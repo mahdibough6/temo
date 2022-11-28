@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Waiting+for+the+Sunrise&display=swap');
+*{
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container {
+    background-image: url("/img/background-image-v1.jpg");
+    /* Full height */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* Center and scale the image nicely */
+    justify-content: space-between;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.header{
+
+    height: 70px;
+    width: 100%;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.logo{
+    width: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 20px;
+    color:white;
+}
+.logo img{
+    height: 30px;
+
+}
+
+.auth{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    margin-right: 20px;
+
+}
+.auth div {
+    align-self: flex-end;
+    color: white;
+}
+
+.login{
+    background-color: #0060AA;
+    border-radius: 4px;
+    padding: 7px 15px 7px 15px;
+}
+.sign-up{
+    background-color: #0060AA;
+    border-radius: 4px;
+    padding: 7px 15px 7px 15px;
+}
+.text{
+    margin: 0 0 10px 40px;
+}
+.text span{
+    font-size: 110px;
+    color: white;
+    font-weight: 400;
+    font-family: 'Waiting for the Sunrise', cursive;
+}
