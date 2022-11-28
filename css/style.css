@@ -6,14 +6,14 @@
     box-sizing: border-box;
 }
 .container {
-    background-image: url("/img/background-image-v1.jpg");
     /* Full height */
+    background-image: url("../img/background-image-v2.jpg");
     height: 100vh;
     display: flex;
     flex-direction: column;
     /* Center and scale the image nicely */
     justify-content: space-between;
-    background-position: center;
+    background-position: center; 
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -35,7 +35,10 @@
     justify-content: flex-start;
     align-items: center;
     margin-left: 20px;
-    color:white;
+    color:#fff;
+    font-family: monospace;
+    font-weight: 900;
+    font-size: xx-large;
 }
 .logo img{
     height: 30px;
@@ -50,9 +53,14 @@
     margin-right: 20px;
 
 }
-.auth div {
+.auth a {
     align-self: flex-end;
     color: white;
+    text-decoration: none;
+    font-family: monospace;
+    font-size: large;
+
+
 }
 
 .login{
