@@ -1,12 +1,24 @@
-<section>
-    <h2>sign up</h2>
-    <form action="./includes/signup.inc.php" method="post">
-        <p>enter your username :</p>
-        <input type="text" name="username" placeholder="Ex: blabla123">
-        <p>enter your password :</p>
-        <input type="password" name="password" placeholder="********">
-        <button type="submit" name="submit">sign up</button>
-
-    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/forms.css">
+    <title>Sign up</title>
     
-</section>
+</head>
+<body>
+
+<form action="./includes/signup.inc.php" method="post">
+  <h2>Sign In</h2>
+  <label for="username">Username</label>
+  <input type="text" name="username" >
+  <label for="password">Password</label>
+  <input type="password" name="password" >
+  <button type="submit" name="submit">Sign up</button>
+</form>
+    
+
+</body>
+</html>
