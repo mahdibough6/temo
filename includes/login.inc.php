@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_POST["submit"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
@@ -12,6 +13,8 @@ if (isset($_POST["submit"])) {
         exit();
     }
     loginUser($con, $username, $password);
+    //header("location : ./home.inc.php");
+    //exit();
 
     
 

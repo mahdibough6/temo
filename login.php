@@ -1,4 +1,8 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +22,9 @@
   <input type="password" name="password" >
   <button type="submit" name="submit">Sign in</button>
 </form>
+
  <?php 
+ echo var_dump($_SESSION);
  if(isset($_POST["error"])){
   echo" <p>hahahah</p>";
  }

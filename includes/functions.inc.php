@@ -1,4 +1,5 @@
 <?php
+session_start();
 function emptyInputSignup($username, $password){
   return false; 
 }
@@ -34,7 +35,8 @@ function loginUser($con, $username, $password){
 $rs = mysqli_query($con, $sql);
 $num_row = mysqli_num_rows($rs);
      if($num_row === 1){
-       header("location: ../home.php");
+       $_SESSION["username"] = $username;
+       header("location: ./home.inc.php");
      }
      else {
        header("location: ../index.php");
