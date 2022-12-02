@@ -1,6 +1,13 @@
 <?php
 session_start();
 ?>
+<?php
+if(isset($_SESSION["username"])){ 
+  header("location: ./home.php");
+  exit();
+  }
+ else {
+echo'
 <!DOCTYPE html>
 
 <html lang="en">
@@ -22,11 +29,11 @@ session_start();
   <input type="password" name="password" >
   <button type="submit" name="submit">Sign in</button>
 </form>
-
- <?php 
+';
  echo var_dump($_SESSION);
  if(isset($_POST["error"])){
   echo" <p>hahahah</p>";
+ }
  }
  ?>   
 
