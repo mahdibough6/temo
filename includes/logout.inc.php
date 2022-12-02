@@ -1,6 +1,6 @@
 <?php 
     session_start();
-if(isset($_POST["logout"])){
+if(isset($_POST["logout"]) || isset($_POST["plogout"])){
 session_unset();
 session_destroy();
 header("location: ../index.php");

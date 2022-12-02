@@ -37,9 +37,12 @@ body{
 .avatar{
     height: 40px;
     width: 40px;
-    background-color: gray;
+    background-color: rgb(107, 72, 72);
     margin-right: 10px;
     border-radius: 50%;
+    background-image: url("../img/avatar.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .popup{
     align-self: flex-end;
@@ -64,7 +67,43 @@ body{
 .settings{
     height: 45px;
 }
+.plogout, .settings{
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+.plogout{
+    padding-top: 10px;
+}
+.plogout:hover{
+    background-color: rgba(226, 53, 53, 0.432);
+    border-radius: 30px;
+    transition: all 0.2s;
+    padding-left: 10px;
+    cursor: pointer;
+}
+.popup span{
+    margin-left: 7px;
+    font-weight: bold;
+}
+.settings span{
+    margin-bottom: 5px;
+}
+.plogout-icon{
+    width: 35px;
+    height: 35px;
+    background-color: red;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.plogout-icon img{
+    width: 22px;
+    margin-left: 2px;
 
+}
 .logout{
 
     height: 50px;
@@ -80,17 +119,8 @@ body{
     height: 50px;
     
 }
-.icon-logout {
-    height: 30px;
-    width: 30px;
-    background-color: rgb(212, 3, 3);
-    border-radius: 50%;
-    color: white;
-    border: none;
-}
-#icp{
-    color: white;
-}
+
+
 
 /*
 .settings{
@@ -135,12 +165,12 @@ background-color: rgba(255, 255, 255, 0.4);
     padding-right: 5px;
     height: 100%;
     border-radius: 10px 0 0 10px;
-    background-color: rgb(173, 5, 5);
+    background-color: rgb(52, 104, 245);
 
 
 }
 .create:hover{
-    background-color: rgba(255, 2, 2, 0.897);
+    background-color: rgba(7, 61, 209, 0.897);
     cursor: pointer;
 }
 .create img{
