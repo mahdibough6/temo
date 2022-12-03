@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Roboto&display=swap');
 
 *{
     margin: 0;
@@ -20,6 +20,15 @@ body{
     background-position: center; 
     background-repeat: no-repeat; 
     background-size: cover; 
+}
+#big-title{
+font-family: 'Caveat', cursive;
+  background: -webkit-linear-gradient(#000000,#ff0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+font-weight: 500;
+font-size: 72px;
+padding-right: 10px;
 }
 .navbar{
     height: 70px;
@@ -197,7 +206,7 @@ background-color: rgba(255, 255, 255, 0.4);
     width: 100%;
     height: 40px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     padding: 5px;
 border-radius: 10px;
@@ -208,18 +217,57 @@ background-color:#ABACB1 ;
 
 background-color:#95969b ;
 }
+.icon{
+    width: 5%;
+}
 .icon img{
     width: 25px;
 }
 .titre{
+    width: 45%;
 }
 .date{
 
+    width: 30%;
 }
 .options{
 
+    display: flex;
+    justify-content: space-around;
+    width: 20%;
 }
 .options img{
     width: 20px;
 
+}
+.edit{
+
+    padding: 5px;
+
+}
+.edit:hover{
+    background-color: #fae20991;
+    border-radius: 50%;
+}
+.remove{
+
+
+    padding: 5px;
+}
+.remove:hover{
+    
+    border-radius: 50%;
+    background-color: #eb3232b9;
+}
+.options img:hover{
+
+    transform: rotateZ(130deg);
+    transition: all 0.3s;
+}
+.toolbox input{
+    width: 180px;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    padding-left: 10px;
 }

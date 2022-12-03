@@ -1,5 +1,4 @@
 <?php
-session_start();
 function emptyInputSignup($username, $password){
   return false; 
 }
@@ -35,6 +34,7 @@ function loginUser($con, $username, $password){
 $rs = mysqli_query($con, $sql);
 $num_row = mysqli_num_rows($rs);
      if($num_row === 1){
+      session_start();
        $_SESSION["username"] = $username;
        header("location: ./home.inc.php");
      }
@@ -43,5 +43,46 @@ $num_row = mysqli_num_rows($rs);
      }
     mysqli_close($con);
     exit();
+
+}
+
+function createFile($con, $title, $data,$username){
+    $sql = "SELECT id_user FROM user WHERE username='".$username."';";
+    $rs = mysqli_query($con, $sql);
+    $row = mysqli_fetch_row($rs);
+    $sDate = date("Y-m-d H-i-s");
+  $owner_id=$row[0];
+  $_SESSION["date"] = $sDate;
+  $sql = "INSERT INTO files(file_name, file_data, last_change_date, creation_date, owner_id) VALUES ('".$title."','".$data."','". $sDate."','". $sDate."','".$owner_id."');";
+
+ mysqli_query($con, $sql);
+    mysqli_close($con);
+    exit();
+
+}
+function showFiles($con,$username){
+    $sql1 = "SELECT id_user FROM user WHERE username='".$username."';";
+    $rs1 = mysqli_query($con, $sql1);
+    $row1 = mysqli_fetch_row($rs1);
+  $owner_id=$row1[0];
+    $sql = "SELECT file_name, date_format(last_change_date, '%W %e %Y %H:%i:%s') as date
+     FROM files WHERE owner_id='".$owner_id."';";
+    $files=Array();
+
+    $rs = mysqli_query($con, $sql);
+$i = 0;
+    while($row = mysqli_fetch_row($rs)){
+
+      $files[$i] =$row[0]."/".$row[1];
+      $i++;
+
+    }
+
+ mysqli_query($con, $sql);
+    mysqli_close($con);
+
+    return $files;
+}
+function editFile(){
 
 }

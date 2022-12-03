@@ -1,5 +1,13 @@
 $(function(){
     $(".create").click(function(){
-        console.log("hi")
-    })
+        let stringData = "ok=true";
+        $.ajax({
+            method: "POST",
+            url: "http://localhost/temo/home.php",
+            cache:false,
+            data:{ok:true}
+
+        });
+        });
+
 });
