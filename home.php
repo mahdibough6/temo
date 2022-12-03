@@ -63,5 +63,6 @@ session_start();
         </div>
     </div>
     <script src="./js/home.js"></script>
+   <script src="./editing_page/js/create_file.js"></script> 
 </body>
 </html>
