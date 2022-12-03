@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <title>temo</title>
 </head>
 <body>
@@ -28,12 +29,17 @@
 </div>
 <div class="sheet" contenteditable="true">
     
+<?php
+if(isset($_SESSION["data"])){
+    echo $_SESSION["data"];
+}
+?>
 </div>
 <div class="btn save"><i class="fa-solid fa-floppy-disk"></i></div>
 <input type="text" class="title" name="title" 
 value="
 <?php
-if(isset($_SESSION["title"])){
+if($_SESSION["title"]!=null){
     echo $_SESSION["title"];
 }
 else{
@@ -44,5 +50,6 @@ else{
 >
 </div>
    <script src="./js/app.js"></script> 
+   <script src="./js/create_file.js"></script>
 </body>
 </html>

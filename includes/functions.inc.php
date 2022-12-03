@@ -57,6 +57,7 @@ function createFile($con, $title, $data,$username){
 
  mysqli_query($con, $sql);
     mysqli_close($con);
+    
     exit();
 
 }
@@ -65,7 +66,7 @@ function showFiles($con,$username){
     $rs1 = mysqli_query($con, $sql1);
     $row1 = mysqli_fetch_row($rs1);
   $owner_id=$row1[0];
-    $sql = "SELECT file_name, date_format(last_change_date, '%W %e %Y %H:%i:%s') as date
+    $sql = "SELECT file_id, file_name, date_format(last_change_date, '%W %e %Y %H:%i:%s') as date
      FROM files WHERE owner_id='".$owner_id."';";
     $files=Array();
 
@@ -73,7 +74,7 @@ function showFiles($con,$username){
 $i = 0;
     while($row = mysqli_fetch_row($rs)){
 
-      $files[$i] =$row[0]."/".$row[1];
+      $files[$i] =$row[0]."/".$row[1]."/".$row[2];
       $i++;
 
     }
@@ -85,4 +86,24 @@ $i = 0;
 }
 function editFile(){
 
+}
+function remove($con, $file_id){
+$sql = "DELETE FROM files WHERE file_id='".$file_id."';";
+    mysqli_query($con, $sql);
+    mysqli_close($con);
+    
+    exit();
+}
+
+
+function fileInfo($con,$file_id){
+    $sql1 = "SELECT file_name, file_data FROM files WHERE file_id='".$file_id."';";
+    $rs1 = mysqli_query($con, $sql1);
+    $file = mysqli_fetch_row($rs1);
+   session_start() ;
+        $_SESSION["title"] = $file[0];
+        $_SESSION["data"] = $file[1];
+ mysqli_query($con, $sql1);
+    mysqli_close($con);
+    exit();
 }

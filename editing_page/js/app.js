@@ -11,21 +11,7 @@ const center = document.getElementsByClassName("center");
 
 const save = document.getElementsByClassName("save");
 //need to work on sending data :
-function saveText(str) {
-  if (str.length == 0) {
-    document.getElementById("txtHint").innerHTML = "";
-    return;
-  } else {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("txtHint").innerHTML = this.responseText;
-      }
-    };
-    xmlhttp.open("GET", "gethint.php?q=" + str, true);
-    xmlhttp.send();
-  }
-}
+
 function changeText(opt, id = 0){
 let span ;
 let sel = window.getSelection && window.getSelection();
@@ -102,8 +88,7 @@ let sel = window.getSelection && window.getSelection();
             break;
         case "save":
         let parent2 = range.extractContents();
-        let text = parent2.textContent.replace(/((<|<\\){1}(\w{1,5})>)/ig, ' '); 
-
+        let text = parent2.textContent; 
             break;
         default:
             break;

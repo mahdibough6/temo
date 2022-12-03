@@ -39,11 +39,13 @@ session_start();
     </div>
 <h1 id="big-title">hello <?php echo$_SESSION["username"] ?></h1>
     <div class="toolbox">
-        <div class="create">
+        <form action="./editing_page/includes/create.inc.php" method="post">
+        <button type="submit" name="ok" class="create">
 <img  src="./img/add.svg" alt="add file" >
 <span>create file</span>
-        </div>
+        </button>
         <input type="text" name="title" placeholder="Please write the title here ..." id="">
+</form>
     </div>
     <div class="filelist">
         <?php
@@ -51,10 +53,7 @@ session_start();
 
     require_once './includes/dbh.inc.php';
     require_once './includes/functions.inc.php';
-if($_SERVER['REQUEST_METHOD']==='POST')
-    if($_POST["ok"]){
-        createFile($con, "untitled", "", $_SESSION["username"]);
-    }
+
 
 
         $files = showFiles($con, $_SESSION["username"]);
@@ -63,14 +62,16 @@ if($_SERVER['REQUEST_METHOD']==='POST')
             echo'
             
         <div class="file">
+        <input type="hidden" value="'.$file[0].'">
             <div class="icon">
             <img src="./img/file-v2.svg" alt="" srcset="">
             </div>
-            <div class="titre">'.$file[0].'</div>
-            <div class="date">'.$file[1].'</div>
+            <div class="titre">'.$file[1].'</div>
+            <div class="date">'.$file[2].'</div>
             <div class="options"> 
 <div class="remove">
             <img src="./img/remove-v1.svg" alt="" srcset="">
+        <input type="hidden" value="'.$file[0].'">
              </div>
             <div class="edit">
             <img src="./img/edit-v2.png" alt="" srcset="">
@@ -83,7 +84,7 @@ if($_SERVER['REQUEST_METHOD']==='POST')
 
 ?>
     </div>
-   <script src="./editing_page/js/create_file.js"></script> 
    <script src="./js/home.js"></script> 
+   <script src="./editing_page/js/create_file.js"></script> 
 </body>
 </html>
