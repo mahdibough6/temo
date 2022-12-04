@@ -36,6 +36,7 @@ if(isset($_SESSION["data"])){
 ?>
 </div>
 <div class="btn save"><i class="fa-solid fa-floppy-disk"></i></div>
+<div class="home" ><img src="../img/home-v1.svg" alt="" srcset=""></div>
 <input type="text" class="title" name="title" 
 value="
 <?php

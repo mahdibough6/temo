@@ -5,7 +5,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         include_once '../../includes/functions.inc.php';
         include_once '../../includes/dbh.inc.php';
 
-        createFile($con, $_POST["title"], $_POST["text"], $_SESSION["username"]);
+        if(isset($_SESSION["edit_id"])){
+
+        updateFile($con, $_SESSION["edit_id"], $_POST["title"], $_POST["text"]);
+        }
+
         header("location: ../../home.php");
         exit();
     }

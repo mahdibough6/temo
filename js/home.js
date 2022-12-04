@@ -30,7 +30,7 @@ $.ajax({
 	}
 });
 	});
-	$(".file").click(function(){
+	$(".edit").click(function(){
 		let id = $(this).children('input').first().val();
 		console.log(id);
 $.ajax({

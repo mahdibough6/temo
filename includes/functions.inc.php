@@ -24,7 +24,9 @@ function createUser($con, $username, $password){
     $sql = "INSERT INTO user(username, password) VALUES ('".$username."', '".$password."');";
     mysqli_query($con, $sql);
     mysqli_close($con);
-    header("location: ../index.php");
+    session_start();
+    $_SESSION["username"] = $username;
+    header("location: ../home.php");
     exit();
 
 }
@@ -47,9 +49,9 @@ $num_row = mysqli_num_rows($rs);
 }
 
 function createFile($con, $title, $data,$username){
-    $sql = "SELECT id_user FROM user WHERE username='".$username."';";
-    $rs = mysqli_query($con, $sql);
-    $row = mysqli_fetch_row($rs);
+    $sql1 = "SELECT id_user FROM user WHERE username='".$username."';";
+    $rs1 = mysqli_query($con, $sql1);
+    $row = mysqli_fetch_row($rs1);
     $sDate = date("Y-m-d H-i-s");
   $owner_id=$row[0];
   $_SESSION["date"] = $sDate;
@@ -97,13 +99,21 @@ $sql = "DELETE FROM files WHERE file_id='".$file_id."';";
 
 
 function fileInfo($con,$file_id){
-    $sql1 = "SELECT file_name, file_data FROM files WHERE file_id='".$file_id."';";
+    $sql1 = "SELECT file_id, file_name, file_data FROM files WHERE file_id='".$file_id."';";
     $rs1 = mysqli_query($con, $sql1);
     $file = mysqli_fetch_row($rs1);
    session_start() ;
-        $_SESSION["title"] = $file[0];
-        $_SESSION["data"] = $file[1];
+$_SESSION["edit_id"] = $file[0];
+        $_SESSION["title"] = $file[1];
+        $_SESSION["data"] = $file[2];
  mysqli_query($con, $sql1);
     mysqli_close($con);
     exit();
+}
+function updateFile($con, $file_id, $title, $data){
+    $sql = "UPDATE files SET file_name = '".$title."' , file_data = '".$data."'WHERE file_id='".$file_id."';";
+    mysqli_query($con, $sql);
+    mysqli_close($con);
+    exit();
+
 }

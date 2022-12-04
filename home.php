@@ -39,13 +39,11 @@ session_start();
     </div>
 <h1 id="big-title">hello <?php echo$_SESSION["username"] ?></h1>
     <div class="toolbox">
-        <form action="./editing_page/includes/create.inc.php" method="post">
-        <button type="submit" name="ok" class="create">
+        <div type="submit" name="ok" class="create">
 <img  src="./img/add.svg" alt="add file" >
 <span>create file</span>
-        </button>
-        <input type="text" name="title" placeholder="Please write the title here ..." id="">
-</form>
+</div>
+        <input type="text" id="titleId" placeholder="Please write the title here ..." >
     </div>
     <div class="filelist">
         <?php
@@ -62,7 +60,6 @@ session_start();
             echo'
             
         <div class="file">
-        <input type="hidden" value="'.$file[0].'">
             <div class="icon">
             <img src="./img/file-v2.svg" alt="" srcset="">
             </div>
@@ -74,12 +71,13 @@ session_start();
         <input type="hidden" value="'.$file[0].'">
              </div>
             <div class="edit">
+        <input type="hidden" value="'.$file[0].'">
             <img src="./img/edit-v2.png" alt="" srcset="">
 </div>
 </div>
         </div>
             ';
-
+        
         }
 
 ?>

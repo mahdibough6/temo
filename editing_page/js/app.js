@@ -97,6 +97,7 @@ let sel = window.getSelection && window.getSelection();
     else{
         console.log("no "+ "id : "+id)
     }
+    
 }
 /*bold.onclick = changeText("blod", "1");
 italic.onmousedown = changeText("italic");
