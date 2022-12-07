@@ -1,7 +1,5 @@
 <?php
 session_start();
-?>
-<?php
 if(isset($_SESSION["username"])){ 
   header("location: ./home.php");
   exit();
@@ -21,7 +19,7 @@ echo'
 </head>
 <body>
 
-<form action="./includes/login.inc.php" method="post">
+<form action="./includes/auth/login.inc.php" method="post">
   <h2>Sign In</h2>
   <label for="username">Username</label>
   <input type="text" name="username" >
@@ -29,12 +27,7 @@ echo'
   <input type="password" name="password" >
   <button type="submit" name="submit">Sign in</button>
 </form>
-';
- echo var_dump($_SESSION);
- if(isset($_POST["error"])){
-  echo" <p>hahahah</p>";
- }
- }
+';}
  ?>   
 
 

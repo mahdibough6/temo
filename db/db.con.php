@@ -3,7 +3,7 @@
 $server = "localhost";
 $user = "root";
 $pwd = "";
-$db = "user";
+$db = "gestion_temo";
 
 $con = mysqli_connect($server, $user, $pwd, $db);
 
