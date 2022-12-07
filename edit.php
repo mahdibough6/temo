@@ -1,3 +1,4 @@
+
 <?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -5,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/edit.style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <title>temo</title>
@@ -36,7 +37,7 @@ if(isset($_SESSION["data"])){
 ?>
 </div>
 <div class="btn save"><i class="fa-solid fa-floppy-disk"></i></div>
-<div class="home" ><img src="../img/home-v1.svg" alt="" srcset=""></div>
+<div class="home" ><img src="./img/home-v1.svg" alt="" srcset=""></div>
 <input type="text" class="title" name="title" 
 value="
 <?php
@@ -50,7 +51,8 @@ else{
 "
 >
 </div>
-   <script src="./js/app.js"></script> 
-   <script src="./js/create_file.js"></script>
+   <script src="./js/editor/edit.func.js"></script> 
+   <script src="./js/editor/formating.js"></script> 
+   
 </body>
 </html>

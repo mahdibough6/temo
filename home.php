@@ -18,9 +18,6 @@ session_start();
 <body>
     <div class="navbar">
         <div class="avatar"></div>
-        <!--  <form action="./includes/logout.inc.php" method="post">
-       <button type="submit" class="logout" name="logout" >logout</buttion></form>
-        <div class="settings"></div>-->
     </div>
     <div class="popup phide">
 
@@ -56,7 +53,7 @@ session_start();
         <?php
 
 
-        require_once './includes/dbh.inc.php';
+        require_once './db/db.con.php';
         require_once './includes/functions.inc.php';
 
 
@@ -88,8 +85,7 @@ session_start();
 
         ?>
     </div>
-    <script src="./js/home.js"></script>
-    <script src="./editing_page/js/create_file.js"></script>
+    <script src="./js/home/home.js"></script>
 </body>
 
 </html>

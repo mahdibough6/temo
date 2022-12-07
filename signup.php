@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<form action="./includes/signup.inc.php" method="post">
+<form action="./includes/auth/signup.inc.php" method="post">
   <h2>Sign In</h2>
   <label for="username">Username</label>
   <input type="text" name="username" >

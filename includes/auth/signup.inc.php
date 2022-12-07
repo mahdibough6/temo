@@ -3,8 +3,10 @@ if (isset($_POST["submit"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    require_once './dbh.inc.php';
-    require_once './functions.inc.php';
+    require_once '../../db/db.con.php';
+    require_once '../../includes/functions.inc.php';
+
+
 
     if(emptyInputSignup($username, $password) !== false){
 
@@ -22,9 +24,11 @@ if (isset($_POST["submit"])) {
         exit();
     }
     createUser($con, $username, $password);
+    header("location: ../../home.php");
+    exit();
 
 }
 else {
-    header("location: ../signup.php");
+    header("location: ../../signup.php");
     exit();
 }
