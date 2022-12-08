@@ -20,12 +20,18 @@ echo'
 <body>
 
 <form action="./includes/auth/login.inc.php" method="post">
-  <h2>Sign In</h2>
+  <h2>Login</h2>
   <label for="username">Username</label>
   <input type="text" name="username" >
   <label for="password">Password</label>
-  <input type="password" name="password" >
-  <button type="submit" name="submit">Sign in</button>
+  <input type="password" name="password" >';
+  if (isset($_GET["error"])) {
+      if ($_GET["error"] == "invalidInput2") {
+          echo'<p id="err">invalid password or username please try again !</p>';
+      }
+  }
+  echo '
+  <button type="submit" name="submit">Login</button>
 </form>
 ';}
  ?>   

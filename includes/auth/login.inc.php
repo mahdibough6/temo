@@ -7,15 +7,15 @@ if (isset($_POST["submit"])) {
     require_once '../../db/db.con.php';
     require_once '../../includes/functions.inc.php';
 
-    if(emptyInputLogin($username, $password) !== false){
-
-        header("location: ../login.php?error=emptyinput");
+   
+    if (loginUser($con, $username, $password)) {
+        header("location: ../../home.php");
+        exit();
+    } else {
+        header("location: ../../login.php?error=invalidInput2");
         exit();
     }
-    if(loginUser($con, $username, $password) == 1 ) header("location: ../../home.php");
-    else header("location: ../../index.php");
-}
-else {
+} else {
     header("location: ../../login.php");
     exit();
 }

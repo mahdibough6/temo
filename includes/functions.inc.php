@@ -1,12 +1,23 @@
 <?php
 
-function emptyInputSignup($username, $password)
+function emptyInput($username, $password)
 {
-    return false;
+    if (empty($username) && empty($password)) {
+        return true;
+    } else {
+        return false;
+    }
 }
-function emptyInputLogin($username, $password)
+function userExists($con, $username)
 {
-    return false;
+    $result = false;
+    $sql = "SELECT * FROM users WHERE username='".$username."';";
+    $rs = mysqli_query($con, $sql);
+    if (mysqli_num_rows($rs) != 0) {
+        $result = true;
+    }
+    return $result;
+    exit();
 }
 function invalidUsername($username)
 {
@@ -24,7 +35,17 @@ function invalidPassword($password)
     }
     return $result;
 }
-
+function invalidInput($con, $username, $password)
+{
+    $result = false;
+    if (
+        invalidPassword($password)||
+        invalidUsername($con, $username)
+    ) {
+        $result = true;
+    }
+    return $result;
+}
 function createUser($con, $username, $password)
 {
     $sql = "INSERT INTO users(username, password) VALUES ('".$username."', '".$password."');";
@@ -32,7 +53,7 @@ function createUser($con, $username, $password)
     mysqli_close($con);
     session_start();
     $_SESSION["username"] = $username;
-    header("location: ../../home.php");
+header("location: ../../home.php");
     exit();
 }
 function loginUser($con, $username, $password)
@@ -44,9 +65,9 @@ function loginUser($con, $username, $password)
     if ($num_row === 1) {
         session_start();
         $_SESSION["username"] = $username;
-        return 1;
+        return true;
     } else {
-        return 0;
+        return false;
     }
     mysqli_close($con);
     exit();
@@ -88,9 +109,6 @@ function showFiles($con, $username)
     mysqli_close($con);
 
     return $files;
-}
-function editFile()
-{
 }
 function remove($con, $file_id)
 {

@@ -6,27 +6,27 @@ if (isset($_POST["submit"])) {
     require_once '../../db/db.con.php';
     require_once '../../includes/functions.inc.php';
 
-
-
-    if(emptyInputSignup($username, $password) !== false){
-
-        header("location: ../signup.php?error=emptyinput");
+    if (emptyInput($username, $password)) {
+        header("location: ../../signup.php?error=emptyinput");
         exit();
     }
-    if(invalidUsername($username) !== false){
-
-        header("location: ../signup.php?error=invalidusername");
+    if (invalidPassword($password)) {
+        header("location: ../../signup.php?error=invalidInput");
         exit();
     }
-    if(invalidPassword($password) !== false){
-
-        header("location: ../signup.php?error=invalidPassword");
+    if (invalidUsername($username)) {
+        header("location: ../../signup.php?error=invalidInput");
         exit();
     }
-    createUser($con, $username, $password);
-    header("location: ../../home.php");
-    exit();
+    if(userExists($con, $username)){
 
+        header("location: ../../signup.php?error=userexists0");
+        exit();
+    }
+ 
+    createUser($con, $username, $password) ;
+    
+  exit();
 }
 else {
     header("location: ../../signup.php");

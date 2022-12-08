@@ -25,12 +25,6 @@ body{
 font-family: 'Caveat', cursive;
 color: white;
 font-size: 50px;
-  /*background: -webkit-linear-gradient(#000000,#ff0000);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-font-weight: 500;
-font-size: 72px;
-padding-right: 10px;*/
 }
 .navbar{
     height: 70px;
