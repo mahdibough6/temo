@@ -1,7 +1,6 @@
 $(function(){
     $(".btn.save").click(function(){
     let text = $(".sheet").html();
-      console.log(text);
             $.ajax({
                 url: "http://localhost/temo/includes/editor/save_file.inc.php",
                 type:'POST',
