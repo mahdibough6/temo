@@ -37,7 +37,6 @@ $.ajax({
 	cache:false,
 	success:function(){
 		
-	    //window.location.href = "http://localhost/temo/includes/home/editing.inc.php";
 		window.location.href = "http://localhost/temo/edit.php";
 	}
 });

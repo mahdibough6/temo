@@ -35,6 +35,23 @@ function invalidPassword($password)
     }
     return $result;
 }
+function invalidPhone($phone)
+{
+    $result = false;
+    $pattern = "/^(06|05|07)[0-9]{8}$/";
+    if (!preg_match($pattern, $phone)) {
+        $result = true;
+    }
+    return $result;
+}
+function invalidEmail($email)
+{
+    $result = false;
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $result = true;
+    }
+    return $result;
+}
 function invalidInput($con, $username, $password)
 {
     $result = false;
@@ -46,9 +63,9 @@ function invalidInput($con, $username, $password)
     }
     return $result;
 }
-function createUser($con, $username, $password)
+function createUser($con, $username, $password, $email, $phone)
 {
-    $sql = "INSERT INTO users(username, password) VALUES ('".$username."', '".$password."');";
+    $sql = "INSERT INTO users(username, password, user_email, user_phone) VALUES ('".$username."', '".$password."', '".$email."', '".$phone."');";
     mysqli_query($con, $sql);
     mysqli_close($con);
     session_start();

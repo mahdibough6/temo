@@ -15,15 +15,23 @@
   <label for="username">Username</label>
   <input type="text" name="username" >
   <label for="email">email</label>
-  <input type="email" name="password" >
+  <input type="email" name="email" >
   <label for="phone">phone</label>
-  <input type="phone" name="password" >
+  <input type="tel" name="phone" >
   <label for="password">Password</label>
   <input type="password" name="password" >
   <?php
   if (isset($_GET["error"])) {
-      if ($_GET["error"] == "emptyinput") {
+      if ($_GET["error"] == "emptyInput") {
           echo'<p id="err">empty input please try again !</p>';
+      }if ($_GET["error"] == "invalidPhone") {
+          echo'<p id="err">the phone number is invalid please try again !</p>';
+      }if ($_GET["error"] == "emptyEmail") {
+          echo'<p id="err">invalid email please try again !</p>';
+      }if ($_GET["error"] == "emptyPassword" && $_GET["error"] == "emptyPassword") {
+          echo'<p id="err">invalid password please try again !</p>';
+      }if ($_GET["error"] == "userexists") {
+          echo'<p id="err">username already exists please try again !</p>';
       }
   }
   ?>
