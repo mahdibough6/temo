@@ -52,25 +52,15 @@ function invalidEmail($email)
     }
     return $result;
 }
-function invalidInput($con, $username, $password)
-{
-    $result = false;
-    if (
-        invalidPassword($password)||
-        invalidUsername($con, $username)
-    ) {
-        $result = true;
-    }
-    return $result;
-}
+
 function createUser($con, $username, $password, $email, $phone)
 {
-    $sql = "INSERT INTO users(username, password, user_email, user_phone) VALUES ('".$username."', '".$password."', '".$email."', '".$phone."');";
+    $sql = "INSERT INTO users(username, password, user_email, user_phone) 
+    VALUES ('".$username."', '".$password."', '".$email."', '".$phone."');";
     mysqli_query($con, $sql);
     mysqli_close($con);
     session_start();
     $_SESSION["username"] = $username;
-header("location: ../../home.php");
     exit();
 }
 function loginUser($con, $username, $password)
