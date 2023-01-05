@@ -80,7 +80,7 @@ function loginUser($con, $username, $password)
     exit();
 }
 
-function createFile($con, $title, $data, $username)
+function createFile($con, $title, $data, $username, $PhysicalfileName='off')
 {
     $sql1 = "SELECT id_user FROM users WHERE username='".$username."';";
     $rs1 = mysqli_query($con, $sql1);
@@ -88,11 +88,18 @@ function createFile($con, $title, $data, $username)
     $sDate = date("Y-m-d H-i-s");
     $owner_id=$row[0];
     $_SESSION["date"] = $sDate;
+    if ($PhysicalfileName == 'off') {
     $sql = "INSERT INTO files(file_name, file_data, last_change_date, creation_date, owner_id) VALUES ('".$title."','".$data."','". $sDate."','". $sDate."','".$owner_id."');";
+    }
+    else{
+
+    $sql = "INSERT INTO files(file_name, file_data, last_change_date, creation_date, owner_id, physical_file_name) VALUES ('".$title."','".$data."','". $sDate."','". $sDate."','".$owner_id."','".$PhysicalfileName."');";
+    }
 
     mysqli_query($con, $sql);
     mysqli_close($con);
 
+                header("Location: ./home.php?uploadsucess");
     exit();
 }
 function showFiles($con, $username)
@@ -102,13 +109,13 @@ function showFiles($con, $username)
     $row1 = mysqli_fetch_row($rs1);
     $owner_id=$row1[0];
     $sql = "SELECT file_id, file_name, date_format(last_change_date, '%W %e %Y %H:%i:%s') as date
-     FROM files WHERE owner_id='".$owner_id."';";
+     , physical_file_name FROM files WHERE owner_id='".$owner_id."';";
     $files=array();
 
     $rs = mysqli_query($con, $sql);
     $i = 0;
     while ($row = mysqli_fetch_row($rs)) {
-        $files[$i] =$row[0]."/".$row[1]."/".$row[2];
+        $files[$i] =$row[0]."|".$row[1]."|".$row[2]."|".$row[3];
         $i++;
     }
 
@@ -119,7 +126,10 @@ function showFiles($con, $username)
 }
 function remove($con, $file_id)
 {
-    $sql = "DELETE FROM files WHERE file_id='".$file_id."';";
+    $sql = "DELETE FROM files WHERE file_id='".$file_id."' or physical_file_name='".$file_id."';";
+    if (is_file("../../".$file_id)) {
+        unlink("../../".$file_id);
+    }
     mysqli_query($con, $sql);
     mysqli_close($con);
     exit();
@@ -128,7 +138,7 @@ function remove($con, $file_id)
 
 function fileInfo($con, $file_id)
 {
-    $sql1 = "SELECT file_id, file_name, file_data FROM files WHERE file_id='".$file_id."';";
+    $sql1 = "SELECT file_id, file_name, file_data FROM files WHERE file_id='".$file_id."'or physical_file_name='".$file_id."';";
     $rs1 = mysqli_query($con, $sql1);
     $file = mysqli_fetch_row($rs1);
     session_start();
@@ -141,8 +151,27 @@ function fileInfo($con, $file_id)
 }
 function updateFile($con, $file_id, $title, $data)
 {
-    $sql = "UPDATE files SET file_name = '".$title."' , file_data = '".$data."'WHERE file_id='".$file_id."';";
+    $sql = "UPDATE files SET file_name = '".$title."' , file_data = '".$data."'WHERE file_id='".$file_id."'or physical_file_name='".$file_id."';";
     mysqli_query($con, $sql);
     mysqli_close($con);
     exit();
+}
+function downloadFile($con, $file_id){
+
+    $sql1 = "SELECT physical_file_name,file_name file FROM files WHERE file_id='".$file_id."'or physical_file_name='".$file_id."';";
+    $rs1 = mysqli_query($con, $sql1);
+    $file = mysqli_fetch_row($rs1);
+    $filePath = $file[0];
+    header('Cache-Control: public');
+  header('Content-Description: File Transfer');
+  header('Content-Type: application/zip');
+  header('Content-Disposition: attachment; filename="'.$file[1].'"');
+  header('Content-Transfer-Encoding: binary');
+
+
+  readfile("../../".$filePath);
+    mysqli_query($con, $sql1);
+    mysqli_close($con);
+    exit();
+
 }

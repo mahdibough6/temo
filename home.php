@@ -36,18 +36,37 @@ session_start();
             <span>logout</span>
         </div>
     </div>
+<div class="popup_upload phide">
+<form action="./upload.php" method="post" enctype="multipart/form-data" >
+    <input type="file" name="file" id="">
+    <button  type="submit"  name="submit">upload file</button>
+   </form>
+   <button class="upload_close"
+   onclick="
+   let d = document.querySelector('.popup_upload'); 
+   d.classList.toggle('phide');
+   "
+   >close</button>
+</div>
     <h1 id="big-title">hello <?php echo $_SESSION["username"] ?></h1>
     <div class="toolbox">
         <div class="create-file">
         <div type="submit" name="ok" class="create">
             <img src="./img/add.svg" alt="add file">
-            <span>create file</span>
+            <span
+           onclick="window.location.href = 'http://localhost/temo/home.php'" 
+            >create file</span>
         </div>
         <input type="text" id="titleId" placeholder="Please write the title here ...">
     </div>
     <div class="upload-file">
         <div class="icon"><img src="./img/upload-v1.svg" alt="" srcset=""></div>
-        <span>upload a file </span>
+        <span
+         onclick="
+   let d = document.querySelector('.popup_upload'); 
+   d.classList.toggle('phide');
+   "
+        >upload a file </span>
     </div></div>
     <div class="filelist">
         <?php
@@ -60,7 +79,13 @@ session_start();
 
         $files = showFiles($con, $_SESSION["username"]);
         for ($i = 0; $i < sizeof($files); $i++) {
-            $file = explode("/", $files[$i]);
+            $file = explode("|", $files[$i]);
+            if(!empty($file[3])){
+                $file_id = $file[3];
+            }
+            else{
+                $file_id = $file[0];
+            }
             echo '
             
         <div class="file">
@@ -72,11 +97,15 @@ session_start();
             <div class="options"> 
 <div class="remove">
             <img src="./img/remove-v1.svg" alt="" srcset="">
-        <input type="hidden" value="' . $file[0] . '">
+        <input type="hidden" value="' . $file_id . '">
              </div>
             <div class="edit">
-        <input type="hidden" value="' . $file[0] . '">
+        <input type="hidden" value="' . $file_id . '">
             <img src="./img/edit-v2.png" alt="" srcset="">
+</div>
+            <div class="download">
+        <input type="hidden" value="' . $file_id . '">
+            <img src="./img/download-v2.png" alt="" srcset="">
 </div>
 </div>
         </div>

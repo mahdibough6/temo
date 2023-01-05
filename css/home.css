@@ -64,6 +64,36 @@ font-size: 50px;
   padding: 15px;
 
 }
+.popup_upload{
+    align-self: center;
+ position: absolute;
+ width: 240px;
+ height: 150px;
+top:100px;
+  z-index: 2;
+  background-color: #d8d8d8;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+
+}
+.upload_close{
+    align-self: center;
+    margin-top: 19px;
+    background-color: red;
+    color: white;
+    padding: 6px;
+    width: 100px;
+    border: none;
+    border-radius: 20px;
+}
+.upload_close:hover{
+    background-color: rgb(247, 49, 49);
+    padding: 5px;
+    width: 80px;
+    transition: all 0.4s;
+}
 .phide{
 
   visibility: hidden;

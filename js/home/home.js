@@ -40,7 +40,23 @@ $.ajax({
 		window.location.href = "http://localhost/temo/edit.php";
 	}
 });
+
+});
+	$(".download").click(function(){
+		let id = $(this).children('input').first().val();
+		console.log(id)
+$.ajax({
+	url: "http://localhost/temo/includes/home/download.inc.php",
+	type: 'POST',       
+	data:{
+		id:id
+	},
+                success: function(){
+           window.location.href = "http://localhost/temo/includes/home/download.inc.php?id="+id;
+                }
+});
 	});
+	
 $(".create").click(function(){
     
             $.ajax({
