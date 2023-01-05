@@ -21,16 +21,16 @@ if (isset($_POST['submit'])) {
     );
     if(isset($_SESSION["username"]))
     $username = $_SESSION["username"];
-    if (!is_dir("uploads/".$username)) {
-        mkdir("uploads/".$username);
+    if (!is_dir("uploads\\".$username)) {
+        mkdir("uploads\\".$username);
       }
-    $uploads = "uploads/".$username or die("username does not exists");
+    $uploads = "uploads\\".$username or die("username does not exists");
 
     if (in_array($fileActualExt, $allowed)) {
         if($fileError === 0){
             if($fileSize < 500000){
                 $fileNewName = uniqid().".".$fileActualExt;
-                $fileDestination = $uploads."/".$fileNewName;
+                $fileDestination = $uploads."\\".$fileNewName;
                 move_uploaded_file($fileTmpName, $fileDestination);
                 $data = file_get_contents($fileDestination);
 

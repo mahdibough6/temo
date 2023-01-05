@@ -158,18 +158,26 @@ function updateFile($con, $file_id, $title, $data)
 }
 function downloadFile($con, $file_id){
 
-    $sql1 = "SELECT physical_file_name,file_name file FROM files WHERE file_id='".$file_id."'or physical_file_name='".$file_id."';";
+    $sql1 = "SELECT physical_file_name,file_name,file_data file FROM files WHERE file_id='".$file_id."'or physical_file_name='".$file_id."';";
     $rs1 = mysqli_query($con, $sql1);
     $file = mysqli_fetch_row($rs1);
-    $filePath = $file[0];
+    if(!empty($file[0]))
+    $filePath ="..\\..\\".$file[0];
+    else
+    {
+    $myfile = fopen("..\\..\\downloads".$file[1].".txt", "w");
+    fwrite($myfile, $file[2]);
+fclose($myfile);
+$filePath ="..\\..\\downloads".$file[1].".txt";
+    }
     header('Cache-Control: public');
   header('Content-Description: File Transfer');
   header('Content-Type: application/zip');
-  header('Content-Disposition: attachment; filename="'.$file[1].'"');
+  header('Content-Disposition: attachment; filename="'.$file[1].".txt".'"');
   header('Content-Transfer-Encoding: binary');
 
 
-  readfile("../../".$filePath);
+  readfile($filePath);
     mysqli_query($con, $sql1);
     mysqli_close($con);
     exit();
